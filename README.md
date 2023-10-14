@@ -3,7 +3,7 @@
     SASS (for scss)
 
 # How to install SASS
-npm install -g sass
+    npm install -g sass
 
 # How to run
     ./integration/compile_css.sh or sass --watch integration/style.scss:integration/assets/stylesheets/output.css
