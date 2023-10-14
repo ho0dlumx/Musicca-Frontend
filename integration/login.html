@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Musicca - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">     
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet" />
+    <link href="assets/stylesheets/output.css" rel="stylesheet" />
+    
+    <script>
+        function validateEmail() {
+            var email = document.getElementById("username");
+            var emailValue = email.value.trim();
+
+            if (emailValue === "") {
+                email.classList.add("error");
+                email.classList.remove("success");
+            } else if (!isValidEmail(emailValue)) {
+                email.classList.add("error");
+                email.classList.remove("success");
+            } else {
+                email.classList.remove("error");
+                email.classList.add("success");
+            }
+        }
+
+        function isValidEmail(email) {
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return emailPattern.test(email);
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("password");
+            var passwordValue = password.value.trim();
+
+            if (passwordValue === "") {
+                password.classList.add("error");
+            } else {
+                password.classList.remove("error");
+            }
+        }
+
+        function validateForm() {
+            var username = document.getElementById("username");
+            var password = document.getElementById("password");
+
+            validateEmail();
+            validatePassword();
+
+            if (username.classList.contains("error") || password.classList.contains("error")) {
+                alert("Please fill in all fields correctly.");
+                return false;
+            }
+
+            if (username.value === "admin@domain.com" && password.value === "rainbow") {
+                alert("Login successful.");
+                return true;
+            } else {
+                password.classList.add("error");
+                alert("Incorrect username or password. Try again.");
+                return false;
+            }
+        }
+    </script>
+
+  </head>
+
+  <body>
+    <div class="menu">
+      <div class="logo-musicca">
+        <img class="logo" src="assets/img/musicca-logo.png">
+      </div>
+      <nav class="navigation-bar">
+        <ul>
+            <li><a href="./404">Exercises</a></li>
+            <li><a href="./404">Lessons</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+      <nav class="buttons">
+        <ul>
+            <li><a href="./404">Create account</a></li>
+            <li><a id="btnmarked" href="login.html">Log in</a></li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <div class="content">
+        <div class="login_box">
+            <h1 class="title_login">Log in</h1>
+            
+            <form id="login_form" action="register.html" method="post" onsubmit="return validateForm()">
+                <input type="text" id="username" name="username" value="" placeholder="  Email" required oninput="validateEmail()"><br><br>
+                
+                <input type="password" id="password" name="password" value="" placeholder="  Password" required oninput="validatePassword()"><br><br>
+                
+                <input id="submitlogin" type="submit" value="Log in">
+            </form>
+        </div>
+    </div>
+  </body>
+</html>
